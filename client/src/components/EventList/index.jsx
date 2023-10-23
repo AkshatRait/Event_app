@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './index.css';
+import Event from '../Event';
+
 
 const EventList = () => {
   const [events, setEvents] = useState([]);
@@ -8,7 +10,7 @@ const EventList = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get('/api/events');
+        const response = await axios.get('/server/events');
         setEvents(response.data);
       } catch (error) {
         console.error('Error fetching events:', error);
@@ -17,21 +19,26 @@ const EventList = () => {
     fetchEvents();
   }, []);
 
+  const handleDelete = async (eventId)=> {
+     //1. go to mongoDb and delete from database
+     //2. it will still display since its in state
+     //3. so -setState with the Id
+     let response = await axios({
+      method: "DELETE",
+      // /servers/events/:idOfEvent
+      url: `/server/events/${eventId}`
+     })
+     if(response.status === 200){
+      setEvents(events.filter(event=> event._id !== eventId))
+     }
+  }
+
+
   return (
     <div className="event-list">
       <h1>My Event List</h1>
       {events.map(event => (
-        <div key={event.id} className="event-item">
-          <h2>{event.title}</h2>
-          <p>Date: {event.date}</p>
-          <p>Location: {event.location}</p>
-          <p>Description: {event.description}</p>
-          <div className="organizer">
-            <strong>Organizer:</strong>
-            <p>Name: {event.organizer.name}</p>
-            <p>Role: {event.organizer.role}</p>
-          </div>
-        </div>
+       <Event event = {event} handleDelete={handleDelete}/>
       ))}
     </div>
   );
