@@ -21,7 +21,7 @@ app.use(morgan('dev'));
 app.use(helmet());
 // END MIDDLEWARE //
 
-app.use(express.static(path.join(__dirname, "dist")))
+app.use(express.static(path.join(__dirname, "../client/dist")))
 
 app.post('/events', async (req,res)=>{
     //1. Get data from frontend
@@ -64,10 +64,10 @@ app.post('/employees/', async (req,res)=>{
 })
 
 
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
+// app.get('/*', (req, res) => {
+//     res.sendFile(path.join(__dirname, '../client/dist/', '/index.html'));
 
-  });
+//   });
 
 
 app.listen(PORT,()=>{
