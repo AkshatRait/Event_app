@@ -65,7 +65,13 @@ app.post('/employees/', async (req,res)=>{
 
 
 app.get('/*', (req, res) => {
+    res.set('Content-Type', 'application/pdf');
     res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
+
+    // Send your PDF data or file as the response
+    // For example, you can use res.sendFile() to send a PDF file
+    // or res.send() to send binary data.
+    // Replace the following line with the appropriate method for your use case.
   });
 
 
