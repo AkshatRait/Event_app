@@ -65,7 +65,7 @@ app.post('/employees/', async (req,res)=>{
 
 
 app.get('/*', (req, res) => {
-    res.set('Content-Type', 'application/pdf');
+    res.set('Content-Type', 'text/html');
     res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
 
     // Send your PDF data or file as the response
