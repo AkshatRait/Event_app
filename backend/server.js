@@ -20,6 +20,8 @@ app.use(morgan('dev'));
 app.use(helmet());
 // END MIDDLEWARE //
 
+app.use(express.static(path.join(__dirname, "dist")))
+
 app.post('/events', async (req,res)=>{
     //1. Get data from frontend
     //2. Model.create(eventData)
