@@ -12,9 +12,9 @@ function App() {
 
   return (
     <>
-      {/* <h1>My Events</h1>
+      <h1>My Events</h1>
       <EventForm  setEvents={setEvents} />
-      <EventList events={events} setEvents={setEvents} /> */}
+      <EventList events={events} setEvents={setEvents} />
       <EmployeesList employees={employees} setEmployees={setEmployees}/>
       <EmployeesForm  employees={employees} setEmployees={setEmployees}/>
       {/* employee form */}
