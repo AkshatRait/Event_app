@@ -5,6 +5,7 @@ const helmet = require('helmet')
 const dotenv = require('dotenv');
 const Event = require('./models/Event.js');
 const Employee = require('./models/Employee.js');
+const path = require("path")
 const PORT = 3000;
 require('dotenv').config();
 require('./config/db.js')
