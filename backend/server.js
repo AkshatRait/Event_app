@@ -63,6 +63,12 @@ app.post('/employees/', async (req,res)=>{
     res.send('Created a new element')
 })
 
+
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  });
+
+  
 app.listen(PORT,()=>{
     console.log(`Server is LIVE on port ${PORT}`);
 })
