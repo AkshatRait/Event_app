@@ -4,6 +4,7 @@ const morgan = require('morgan')
 const helmet = require('helmet')
 const dotenv = require('dotenv');
 const Event = require('./models/Event.js');
+const Employee = require('./models/Employee.js');
 const PORT = 3000;
 require('dotenv').config();
 require('./config/db.js')
@@ -43,11 +44,20 @@ app.delete('/events/:idOfEvent', async (req,res)=>{
     )
 })
 
-app.put("/events/:idOfEvent", async (req,res)=>{
-    let id = req.params.idOfEvent;
-    let updatedData = req.body
-    let response = await Event.findByIdAndUpdate(id, updatedData)
-    res.send('event updates')
+app.post("/events/", async (req,res)=>{
+    let response = await Event.create(req.body);
+    res.send('Created a new element')
+})
+
+
+app.get('/employees', async (req,res)=>{
+    let arrayOfEmployees = await Employee.find()
+    res.send(arrayOfEmployees)
+})
+
+app.post('/employees/', async (req,res)=>{
+    let response = await Employee.create(req.body);
+    res.send('Created a new element')
 })
 
 app.listen(PORT,()=>{

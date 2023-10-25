@@ -1,18 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { useState } from 'react'
 import EventForm from './components/EventForm'
 import EventList from './components/EventList'
+import EmployeesForm from './components/EmployeesForm';
+import EmployeesList from './components/Employees';
 
 function App() {
-  const [count, setCount] = useState(0)
+  
+  const [events, setEvents] = useState([]);
+  const [employees, setEmployees] = useState([]);
 
   return (
     <>
-    <h1>My Events</h1>
-      <EventForm />
-      <EventList />
+      {/* <h1>My Events</h1>
+      <EventForm  setEvents={setEvents} />
+      <EventList events={events} setEvents={setEvents} /> */}
+      <EmployeesList employees={employees} setEmployees={setEmployees}/>
+      <EmployeesForm  employees={employees} setEmployees={setEmployees}/>
+      {/* employee form */}
+      {/* employee list */}
     </>
   )
 }
